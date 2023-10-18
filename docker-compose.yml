@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  ansible_controlnode:
+    container_name: ansible_controlnode
+    build: 
+      context: .
+      dockerfile: ./control/Dockerfile
+    ports:
+      - 22220:22
+    command: ["sleep","infinity"]
+    restart: always
+
+  ansible_node:
+    container_name: ansible_node_1
+    build: 
+      context: .
+      dockerfile: ./node/Dockerfile
+    ports:
+      - 22221:22
+    restart: always
+    command: ["sleep","infinity"]
+
+networks:
+  ansible:
